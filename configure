@@ -1,0 +1,34 @@
+#!/bin/sh
+
+if which vim 2>/dev/null ; then
+    echo Please install vim first, and then run it again.
+    exit
+fi
+
+if which cscope 2>/dev/null ; then
+    echo Please install cscope package, the vim pluting needs cscope package.
+    exit
+fi
+
+if which ctags 2>/dev/null ; then
+    echo Pleass install ctags package, the vim plugin needs ctags package.
+    exit
+fi
+
+if vim --version | awk '/VIM - Vi IMproved/{print $5>=7.4}' ;then
+    echo Please upgrade vim to 7.4
+    exit
+fi
+
+if [ -f ~/.vimrc ]; then
+    cp ~/.vimrc ~/.vimrc.bak
+fi
+
+if [ -f ~/.vimrc.plugins ]; then
+    cp ~/.vimrc.plugins ~/.vimrc.plugins.bak
+fi
+
+ln -sf $(pwd)/vimrc ~/.vimrc
+ln -sf $(pwd)/vimrc.plugins ~/.vimrc.plugins
+
+vim -c BundleUpdate -c qa!
