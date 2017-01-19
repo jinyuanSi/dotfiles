@@ -2,6 +2,7 @@
 "////////////////////////global///////////////////////////////
 
 set nocompatible " be iMproved, required
+
 function! OSX()
     return has('macunix')
 endfunction
@@ -48,14 +49,7 @@ filetype plugin indent on " required
 syntax on " required
 
 " Default colorscheme setup
-
-if has('gui_running')
-    set background=dark
-else
-    set background=dark
-    set t_Co=256 " make sure our terminal use 256 color
-    let g:solarized_termcolors = 256
-endif
+set background=dark
 colorscheme solarized
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
@@ -70,6 +64,7 @@ set history=30 " keep 30 lines of command line history
 set autoread " auto read same-file change ( better for vc/vim change )
 behave xterm  " set mouse behavior as xterm
 set matchtime=0 " 0 second to show the matching paren ( much faster )
+set showmatch " show matching paren
 set nu " show line number
 " only supoort in 7.3 or higher
 if v:version >= 703
@@ -86,6 +81,7 @@ set ruler " show the cursor position all the time
 set hidden " allow to change buffer without saving
 set shortmess=aoOtTI " shortens messages to avoid 'press a key' prompt
 set lazyredraw " do not redraw while executing macros (much faster)
+set ttyfast
 set display+=lastline " for easy browse last line with wrap text
 set laststatus=2 " always have status-line
 set titlestring=%F\ (%{expand(\"%:p:.:h\")}/)
@@ -109,7 +105,6 @@ set expandtab " set expandtab on, the tab will be change to space automaticaly
 set ve=block " in visual block mode, cursor can be positioned where there is no actual character
 set foldmethod=marker foldmarker={,} foldlevel=9999
 
-set showmatch " show matching paren
 set incsearch " do incremental searching
 set hlsearch " highlight search terms
 set ignorecase " set search/replace pattern to ignore case
@@ -138,13 +133,13 @@ if has('autocmd')
                     \ if line("'\"") > 0 && line("'\"") <= line("$") |
                     \   exe "normal g`\"" |
                     \ endif
-        au FileType text setlocal textwidth=78 " for all text files set 'textwidth' to 78 characters.
+        au FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
         au FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
         au FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
 endif
 
-map Q gq
+" let mapleader = "," " default "\"
 " copy - paste
 noremap <Leader>p "+p
 vmap <C-c> "+y
@@ -161,18 +156,11 @@ noremap <C-l> <C-W>l
 nnoremap g^ gUiW
 nnoremap gv guiW
 
-nnoremap H ^
-nnoremap L g_
-vnoremap H ^
-vnoremap L g_
-
 "change current direcotry
 cmap cwd lcd %:p:h
 
 noremap k gk
 noremap j gj
-nnoremap [t gT
-nnoremap ]t gt
 nnoremap [c :cp <CR>
 nnoremap ]c :cn <CR>
 nnoremap <F10> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -L cscope.files && cscope -bkq  -i cscope.files <CR>
