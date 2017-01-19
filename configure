@@ -1,21 +1,21 @@
 #!/bin/sh
 
-if which vim 2>/dev/null ; then
+if ! which vim 2>&1 1>/dev/null ; then
     echo Please install vim first, and then run it again.
     exit
 fi
 
-if which cscope 2>/dev/null ; then
+if ! which cscope 2>&1 1>/dev/null ; then
     echo Please install cscope package, the vim pluting needs cscope package.
     exit
 fi
 
-if which ctags 2>/dev/null ; then
+if ! which ctags 2>&1 1>/dev/null ; then
     echo Pleass install ctags package, the vim plugin needs ctags package.
     exit
 fi
 
-if vim --version | awk '/VIM - Vi IMproved/{print $5>=7.4}' ;then
+if [ $(vim --version | awk '/VIM - Vi IMproved/{print $5>=7.4}') -ne 1 ];then
     echo Please upgrade vim to 7.4
     exit
 fi
@@ -31,4 +31,6 @@ fi
 ln -sf $(pwd)/vimrc ~/.vimrc
 ln -sf $(pwd)/vimrc.plugins ~/.vimrc.plugins
 
-vim -c BundleUpdate -c qa!
+mkdir -p ~/.vim/bundle
+
+cd ~/.vim/bundle && git clone https://github.com/gmarik/Vundle.vim.git && vim -e -c BundleUpdate -c qa!
