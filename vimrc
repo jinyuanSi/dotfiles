@@ -30,9 +30,8 @@ else
     silent exec 'language en_US.UTF-8'
     set encoding=utf-8
     set termencoding=iso10646-1 "utf-8
+    set shell=/bin/bash
 endif
-
-set shell=/bin/bash
 
 " vundle#begin
 filetype off " required
