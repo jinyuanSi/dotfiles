@@ -15,11 +15,12 @@ if ! which ctags 2>&1 1>/dev/null ; then
     exit
 fi
 
-if [ $(vim --version | awk '/VIM - Vi IMproved/{print $5>=7.4}') -ne 1 ];then
+if [ $(vim --version | awk '/VIM - Vi IMproved/{print ($5>=7.4)}') -ne 1 ];then
     echo Please upgrade vim to 7.4
     exit
 fi
 
+BUNDLE_DIR=~/.vim/bundle
 if [ -f ~/.vimrc ]; then
     cp ~/.vimrc ~/.vimrc.bak
 fi
@@ -31,6 +32,15 @@ fi
 ln -sf $(pwd)/vimrc ~/.vimrc
 ln -sf $(pwd)/vimrc.plugins ~/.vimrc.plugins
 
-mkdir -p ~/.vim/bundle
+# make sure ~/.vim/bundle exist.
+mkdir -p ${BUNDLE_DIR}
 
-cd ~/.vim/bundle && git clone https://github.com/gmarik/Vundle.vim.git && vim -e -c BundleUpdate -c qa!
+pushd ${BUNDLE_DIR} 2>&1 1>/dev/null
+if [ -d ${BUNDLE_DIR}/Vundle.vim ]; then
+    cd ${BUNDLE_DIR}/Vundle.vim && git pull -q
+else
+    git clone https://github.com/gmarik/Vundle.vim.git
+fi
+popd ${BUNDLE_DIR} 2>&1 1>/dev/null
+
+vim -e -c BundleUpdate -c qa!

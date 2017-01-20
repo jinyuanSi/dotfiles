@@ -2,4 +2,6 @@ USAGE
 =====
     Your just run:
 
-    ./configure
+        ./configure
+
+    to configure your vim.
