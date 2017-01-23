@@ -1,16 +1,16 @@
 #!/bin/sh
 
-if ! which vim 2>&1 1>/dev/null ; then
+if ! which vim 1>/dev/null 2>&1 ; then
     echo Please install vim first, and then run it again.
     exit
 fi
 
-if ! which cscope 2>&1 1>/dev/null ; then
+if ! which cscope 1>/dev/null 2>&1 ; then
     echo Please install cscope package, the vim pluting needs cscope package.
     exit
 fi
 
-if ! which ctags 2>&1 1>/dev/null ; then
+if ! which ctags 1>/dev/null 2>&1 ; then
     echo Pleass install ctags package, the vim plugin needs ctags package.
     exit
 fi
@@ -43,4 +43,4 @@ else
 fi
 popd ${BUNDLE_DIR} 2>&1 1>/dev/null
 
-vim -e -c BundleUpdate -c qa!
+vim -e -c BundleUpdate -c qa! 2>/dev/null

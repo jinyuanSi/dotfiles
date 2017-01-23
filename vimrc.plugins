@@ -6,6 +6,9 @@ source $VIMRUNTIME/ftplugin/man.vim
 Plugin 'gmarik/Vundle.vim'
 
 " ---------------------------------------------------
+Plugin 'jeffkreeftmeijer/vim-numbertoggle' "relative line number plugin
+
+" ---------------------------------------------------
 Plugin 'vim-scripts/taglist.vim'
 nnoremap <unique> <silent> tl :TlistToggle<CR>
 
