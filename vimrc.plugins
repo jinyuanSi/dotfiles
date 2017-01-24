@@ -45,8 +45,6 @@ let NERDTreeWinPos="left"
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=0
-let g:NERDTreeMapOpenSplit='s'
-let g:NERDTreeMapOpenVSplit='v'
 let NERDTreeAutoDeleteBuffer=1
 
 
@@ -60,29 +58,6 @@ nnoremap ]b :MBEbn <CR>
 " ---------------------------------------------------
 " vim-signature
 Plugin 'kshenoy/vim-signature'
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "m-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "mda",
-        \ 'PurgeMarkers'       :  "m<BS>",
-        \ 'GotoNextLineAlpha'  :  "']",
-        \ 'GotoPrevLineAlpha'  :  "'[",
-        \ 'GotoNextSpotAlpha'  :  "`]",
-        \ 'GotoPrevSpotAlpha'  :  "`[",
-        \ 'GotoNextLineByPos'  :  "]'",
-        \ 'GotoPrevLineByPos'  :  "['",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "[+",
-        \ 'GotoPrevMarker'     :  "[-",
-        \ 'GotoNextMarkerAny'  :  "]=",
-        \ 'GotoPrevMarkerAny'  :  "[=",
-        \ 'ListLocalMarks'     :  "ml",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
 
 " ---------------------------------------------------
 " ctrlp: invoke by <ctrl-p>
