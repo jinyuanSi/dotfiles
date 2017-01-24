@@ -20,7 +20,6 @@ if [ $(vim --version | awk '/VIM - Vi IMproved/{print ($5>=7.4)}') -ne 1 ];then
     exit
 fi
 
-BUNDLE_DIR=~/.vim/bundle
 if [ -f ~/.vimrc ]; then
     cp ~/.vimrc ~/.vimrc.bak
 fi
@@ -32,15 +31,24 @@ fi
 ln -sf $(pwd)/vimrc ~/.vimrc
 ln -sf $(pwd)/vimrc.plugins ~/.vimrc.plugins
 
+BUNDLE_DIR=~/.vim/bundle
+GITHUB_BASEURL=https://github.com
 # make sure ~/.vim/bundle exist.
 mkdir -p ${BUNDLE_DIR}
 
-pushd ${BUNDLE_DIR} 2>&1 1>/dev/null
-if [ -d ${BUNDLE_DIR}/Vundle.vim ]; then
-    cd ${BUNDLE_DIR}/Vundle.vim && git pull -q
-else
-    git clone https://github.com/gmarik/Vundle.vim.git
-fi
-popd ${BUNDLE_DIR} 2>&1 1>/dev/null
-
-vim -e -c BundleUpdate -c qa! 2>/dev/null
+pushd ${BUNDLE_DIR} 1>/dev/null 2>&1
+grep '^\s*Plugin ' ~/.vimrc.plugins | awk -F"'" '{print $2}' | while read vim_plugin
+do
+    plugin_dir=$(basename ${vim_plugin%'.git'})
+    if [ -d ${plugin_dir}/.git ]; then
+        pushd ${plugin_dir} 2>&1 1>/dev/null
+        git pull -q
+        popd 2>&1 1>/dev/null
+    else
+        if [ -d ${plugin_dir} ]; then
+            mv ${plugin_dir} ${plugin_dir}.bak
+        fi
+        git clone ${GITHUB_BASEURL}/${vim_plugin}
+    fi
+done
+popd 1>/dev/null 2>&1
