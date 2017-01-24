@@ -31,19 +31,22 @@ else
     silent exec 'language en_US.UTF-8'
     set encoding=utf-8
     set termencoding=iso10646-1 "utf-8
-    set shell=/bin/bash
+    set shell=/bin/sh
 endif
 
 " vundle#begin
 filetype off " required
 
 set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin() " required
 call vundle#rc('~/.vim/bundle/')
 " load .vimrc.plugins & .vimrc.plugins.local
 let vimrc_plugins_path = '~/.vimrc.plugins'
 if filereadable(expand(vimrc_plugins_path))
     exec 'source ' . fnameescape(vimrc_plugins_path)
 endif
+call vundle#end()         " required
+
 " vundle#end
 filetype plugin indent on " required
 syntax on " required
