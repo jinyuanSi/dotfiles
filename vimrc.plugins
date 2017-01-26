@@ -6,6 +6,10 @@ source $VIMRUNTIME/ftplugin/man.vim
 Plugin 'gmarik/Vundle.vim'
 
 " ---------------------------------------------------
+Plugin 'takac/vim-hardtime'
+let g:hardtime_default_on = 1
+
+" ---------------------------------------------------
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' "relative line number plugin
 
 " ---------------------------------------------------

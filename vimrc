@@ -106,7 +106,6 @@ set cindent shiftwidth=4 " set cindent on to autoinent when editing c/c++ file, 
 set tabstop=4 " set tabstop to 4 characters
 set expandtab " set expandtab on, the tab will be change to space automaticaly
 set ve=block " in visual block mode, cursor can be positioned where there is no actual character
-set foldmethod=marker foldmarker={,} foldlevel=9999
 
 set incsearch " do incremental searching
 set hlsearch " highlight search terms
