@@ -20,6 +20,11 @@ if [ $(vim --version | awk '/VIM - Vi IMproved/{print ($5>=7.4)}') -ne 1 ];then
     exit
 fi
 
+if ! which git 1>/dev/null 2>&1 ; then
+    echo Pleass install git package, the vim plugin needs git command to update Plugins from internat.
+    exit
+fi
+
 if [ -f ~/.vimrc ]; then
     cp ~/.vimrc ~/.vimrc.bak
 fi
