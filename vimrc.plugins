@@ -7,7 +7,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " ---------------------------------------------------
 Plugin 'takac/vim-hardtime'
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 
 " ---------------------------------------------------
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' "relative line number plugin
