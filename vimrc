@@ -15,23 +15,21 @@ endfunction
 
 
 " language
+set encoding=utf-8
+
 if WINDOWS()
     silent exec 'language english'
     if has('multi_byte')
         set termencoding=cp850
-        set encoding=utf-8
         setglobal fileencoding=utf-8
         set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
     endif
 elseif OSX()
     silent exec 'language en_US'
-    set encoding=utf-8
     set termencoding=utf-8
 else
     silent exec 'language en_US.UTF-8'
-    set encoding=utf-8
     set termencoding=iso10646-1 "utf-8
-    set shell=/bin/sh
 endif
 
 " vundle#begin
@@ -127,17 +125,18 @@ endif
 
 if has('autocmd')
     augroup ex
-        au!
+        autocmd!
         " when editing a file, always jump to the last known cursor position.
         " don't do it when the position is invalid or when inside an event handler
         " (happens when dropping a file on gvim).
-        au BufReadPost *
+        autocmd BufReadPost *
                     \ if line("'\"") > 0 && line("'\"") <= line("$") |
                     \   exe "normal g`\"" |
                     \ endif
-        au FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
-        au FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
-        au FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
+        autocmd FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
+        autocmd FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
+        autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
+        autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
 endif
 
