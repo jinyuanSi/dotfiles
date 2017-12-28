@@ -16,6 +16,7 @@ endfunction
 
 " language
 set encoding=utf-8
+set helplang=cn
 
 if WINDOWS()
     silent exec 'language english'
@@ -138,6 +139,25 @@ if has('autocmd')
         autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
         autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
+endif
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+if has("cscope")
+    set csto=1
+    set cst
+    set cspc=3
+    "add any database in current dir
+    if filereadable("cscope.out")
+        cs add cscope.out
+    "else search cscope.out elsewhere
+    else
+        let cscope_file=findfile("cscope.out", ".;")
+        let cscope_pre=matchstr(cscope_file, ".*/")
+        "echo cscope_file
+        if !empty(cscope_file) && filereadable(cscope_file)
+            exe "cs add" cscope_file cscope_pre
+        endif
+     endif
 endif
 
 " let mapleader = "," " default "\"
