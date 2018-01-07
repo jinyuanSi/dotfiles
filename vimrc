@@ -6,9 +6,11 @@ set nocompatible " be iMproved, required
 function! OSX()
     return has('macunix')
 endfunction
+
 function! LINUX()
     return has('unix') && !has('macunix') && !has('win32unix')
 endfunction
+
 function! WINDOWS()
     return  (has('win16') || has('win32') || has('win64'))
 endfunction
@@ -16,7 +18,8 @@ endfunction
 
 " language
 set encoding=utf-8
-set helplang=cn
+
+"set helplang=cn
 
 if WINDOWS()
     silent exec 'language english'
@@ -25,9 +28,11 @@ if WINDOWS()
         setglobal fileencoding=utf-8
         set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
     endif
+
 elseif OSX()
     silent exec 'language en_US'
     set termencoding=utf-8
+
 else
     silent exec 'language en_US.UTF-8'
     set termencoding=iso10646-1 "utf-8
@@ -74,6 +79,7 @@ if v:version >= 703
 endif
 set viewoptions=folds,options,cursor,unix,slash
 set wildmenu " turn on wild menu, try typing :h and press <Tab>
+set wildignore+=*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 "set whichwrap=b,s,h,l,<,>,[,]
 set whichwrap=b,s,[,]
 set list
@@ -136,7 +142,7 @@ if has('autocmd')
                     \ endif
         autocmd FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
         autocmd FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
-        autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
+        autocmd FileType javascript,html,htmldjango,xhtml,haml,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
         autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
 endif

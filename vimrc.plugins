@@ -1,5 +1,3 @@
-
-
 source $VIMRUNTIME/ftplugin/man.vim
 
 " ---------------------------------------------------
@@ -9,23 +7,11 @@ Plugin 'VundleVim/Vundle.Vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' "relative line number plugin
 
 " ---------------------------------------------------
-Plugin 'vim-scripts/taglist.vim'
-nnoremap <unique> <silent> tl :TlistToggle<CR>
-
-let Tlist_Ctags_Cmd = '/usr/bin/ctags' " location of ctags tool
-let Tlist_Show_One_File = 1 " Displaying tags for only one file~
-let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
-let Tlist_Use_Right_Window = 1 " split to the right side of the screen
-let Tlist_Sort_Type = "order" " sort by order or name
-let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
-let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
-let Tlist_GainFocus_On_ToggleOpen = 1 " Jump to taglist window on open.
-let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
-let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
-let Tlist_BackToEditBuffer = 0 " If no close on select, let the user choose back to edit buffer or not
-let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
-let Tlist_WinWidth = 40
-let Tlist_Compact_Format = 1 " do not show help
+Plugin 'majutsushi/tagbar'
+let g:tagbar_left=0
+let g:tagbar_width=30
+let g:tagbar_autofocus = 1
+nmap <leader>tb :TagbarToggle<CR>
 
 " ---------------------------------------------------
 " vim-color-solarized
@@ -45,15 +31,25 @@ let NERDTreeWinPos="left"
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=0
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let NERDTreeShowBookmarks=1
 let NERDTreeAutoDeleteBuffer=1
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 
 
 " ---------------------------------------------------
 " minibufexpl
-Plugin 'fholgado/minibufexpl.vim'
+Plugin 'rexsi/minibufexpl.vim'
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
 nnoremap [b :MBEbp <CR>
 nnoremap ]b :MBEbn <CR>
 
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'gko/vim-coloresque'
 
 " ---------------------------------------------------
 " vim-signature
@@ -83,6 +79,7 @@ let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
 
 " ---------------------------------------------------
 Plugin 'vim-scripts/AutoComplPop'
+Plugin 'tpope/vim-endwise'
 
 " ---------------------------------------------------
 Plugin 'Yggdroot/indentLine'
@@ -92,7 +89,11 @@ Plugin 'sjl/gundo.vim'
 nnoremap <F5> :GundoToggle<CR>
 
 " ---------------------------------------------------
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'  "replace with the following three plugins
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
 Plugin 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -127,6 +128,12 @@ let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
 let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全
 let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " set completeopt=menuone,menu,longest
