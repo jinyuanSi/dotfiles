@@ -161,7 +161,9 @@ if has("cscope")
         let cscope_pre=matchstr(cscope_file, ".*/")
         "echo cscope_file
         if !empty(cscope_file) && filereadable(cscope_file)
+            set nocscopeverbose " suppress 'duplicate connection' error
             exe "cs add" cscope_file cscope_pre
+            set cscopeverbose
         endif
      endif
 endif
