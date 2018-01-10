@@ -41,7 +41,7 @@ endif
 " vundle#begin
 filetype off " required
 
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/bundle/Vundle.Vim/
 call vundle#begin() " required
 call vundle#rc('~/.vim/bundle/')
 " load .vimrc.plugins & .vimrc.plugins.local

@@ -43,9 +43,8 @@ GITHUB_BASEURL=https://github.com
 mkdir -p ${BUNDLE_DIR}
 
 pushd ${BUNDLE_DIR} 1>/dev/null 2>&1
-grep '^\s*Plugin ' ~/.vimrc.plugins | awk -F"'" '{print $2}' | while read vim_plugin
-do
-    plugin_dir=$(basename ${vim_plugin%'.git'})
+function pull_update {
+    local plugin_dir=$(basename ${1%'.git'})
     if [ -d ${plugin_dir}/.git ]; then
         pushd ${plugin_dir} 2>&1 1>/dev/null
         git pull -q
@@ -54,7 +53,14 @@ do
         if [ -d ${plugin_dir} ]; then
             mv ${plugin_dir} ${plugin_dir}.bak
         fi
-        git clone ${GITHUB_BASEURL}/${vim_plugin}
+        git clone ${GITHUB_BASEURL}/${1}
     fi
+}
+
+grep '^\s*Plugin ' ~/.vimrc.plugins | awk -F"'" '{print $2}' | while read vim_plugin
+do
+    pull_update ${vim_plugin} &
 done
 popd 1>/dev/null 2>&1
+
+wait
