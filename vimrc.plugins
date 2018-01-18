@@ -35,7 +35,7 @@ let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let NERDTreeShowBookmarks=1
 let NERDTreeAutoDeleteBuffer=1
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+let NERDTreeIgnore=['\~$[[file]]', '\.pyc$[[file]]', '\.swp$[[file]]', '^cscope\.\([a-z]\+\.\)\?out$[[file]]', '^cscope.tool$[[file]]']
 
 
 " ---------------------------------------------------
