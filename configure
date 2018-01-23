@@ -1,28 +1,35 @@
 #!/bin/sh
 
-if ! which vim 1>/dev/null 2>&1 ; then
-    echo Please install vim first, and then run it again.
-    exit
+NEED_INSTALL=""
+
+if ! command -v vim &>/dev/null ; then
+    NEED_INSTALL="${NEED_INSTALL}vim "
+    echo "Please install vim first, and then run it again."
 fi
 
-if ! which cscope 1>/dev/null 2>&1 ; then
-    echo Please install cscope package, the vim pluting needs cscope package.
+if ! command -v ctags &>/dev/null ; then
+    NEED_INSTALL="${NEED_INSTALL}git "
+    echo "Pleass install ctags package, the vim plugin needs ctags package."
+fi
+
+if ! command -v git &>/dev/null ; then
+    NEED_INSTALL="${NEED_INSTALL}git "
+    echo "Pleass install git package, the vim plugin needs git command to update Plugins from internat."
+fi
+
+if ! command -v cscope &>/dev/null ; then
+    NEED_INSTALL="${NEED_INSTALL}cscope "
+    echo "Please install cscope package, the vim plugin needs cscope package."
     echo "Download url for windows: https://nchc.dl.sourceforge.net/project/mslk/Cscope/cscope-15.7/cscope-15.7.zip"
-    exit
 fi
 
-if ! which ctags 1>/dev/null 2>&1 ; then
-    echo Pleass install ctags package, the vim plugin needs ctags package.
-    exit
+if [ -n "${NEED_INSTALL}" ]; then
+    echo "Please re-run ./configure after install ${NEED_INSTALL}"
+    exit 1
 fi
 
 if [ $(vim --version | awk '/VIM - Vi IMproved/{print ($5>=7.4)}') -ne 1 ];then
     echo Please upgrade vim to 7.4
-    exit
-fi
-
-if ! which git 1>/dev/null 2>&1 ; then
-    echo Pleass install git package, the vim plugin needs git command to update Plugins from internat.
     exit
 fi
 
