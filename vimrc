@@ -35,7 +35,7 @@ elseif OSX()
 
 else
     silent exec 'language en_US.UTF-8'
-    set termencoding=iso10646-1 "utf-8
+    set termencoding=utf-8
 endif
 
 " vundle#begin
@@ -149,7 +149,7 @@ endif
 
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 if has("cscope")
-    set csto=1
+    set csto=0
     set cst
     set cspc=3
     "add any database in current dir

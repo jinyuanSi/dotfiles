@@ -137,3 +137,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " set completeopt=menuone,menu,longest
+
+Plugin 'fatih/vim-go'
+"let g:go_fmt_autosave=0
+"let g:go_asmfmt_autosave=0
