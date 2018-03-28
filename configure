@@ -8,7 +8,7 @@ if ! command -v vim &>/dev/null ; then
 fi
 
 if ! command -v ctags &>/dev/null ; then
-    NEED_INSTALL="${NEED_INSTALL}git "
+    NEED_INSTALL="${NEED_INSTALL}ctags "
     echo "Pleass install ctags package, the vim plugin needs ctags package."
 fi
 
