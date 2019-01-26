@@ -46,6 +46,7 @@ else
 fi
 
 alias ll='ls -rthl --color=auto'
+alias git-debug='GIT_TRACE=2 GIT_CURL_VERBOSE=2 GIT_TRACE_PERFORMANCE=2 GIT_TRACE_PACK_ACCESS=2 GIT_TRACE_PACKET=2 GIT_TRACE_PACKFILE=2 GIT_TRACE_SETUP=2 GIT_TRACE_SHALLOW=2 git'
 
 if [ -f ~/.bashrc.alias.servers ]; then
     source ~/.bashrc.alias.servers
