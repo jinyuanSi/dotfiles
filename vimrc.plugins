@@ -35,9 +35,13 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=0
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeNodeDelimiter = "\u00a0"
 let NERDTreeShowBookmarks=1
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeIgnore=['\~$[[file]]', '\.pyc$[[file]]', '\.swp$[[file]]', '^cscope\.\([a-z]\+\.\)\?out$[[file]]', '^cscope.tool$[[file]]']
+
+autocmd vimenter * if !argc()|NERDTree|endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
 " ---------------------------------------------------
@@ -50,8 +54,10 @@ let g:miniBufExplModSelTarget = 1
 nnoremap [b :MBEbp <CR>
 nnoremap ]b :MBEbn <CR>
 
+" ---------------------------------------------------
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'gko/vim-coloresque'
+Plugin 'posva/vim-vue'
 
 " ---------------------------------------------------
 " vim-signature
@@ -96,6 +102,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
+" ---------------------------------------------------
 Plugin 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -119,6 +126,7 @@ nmap <leader>gf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>gi :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>gd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+" ---------------------------------------------------
 Plugin 'vim-scripts/OmniCppComplete'
 set tags+=./tags
 " OmniCppComplete
@@ -140,6 +148,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " set completeopt=menuone,menu,longest
 
+" ---------------------------------------------------
 Plugin 'fatih/vim-go'
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)

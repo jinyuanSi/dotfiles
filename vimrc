@@ -142,7 +142,7 @@ if has('autocmd')
                     \ endif
         autocmd FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
         autocmd FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
-        autocmd FileType javascript,html,htmldjango,xhtml,haml,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+        autocmd FileType javascript,html,htmldjango,xhtml,haml,css,yaml,yml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
         autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
 endif

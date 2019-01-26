@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 NEED_INSTALL=""
 
@@ -46,10 +46,7 @@ ln -sf $(pwd)/vimrc.plugins ~/.vimrc.plugins
 
 BUNDLE_DIR=~/.vim/bundle
 GITHUB_BASEURL=https://github.com
-# make sure ~/.vim/bundle exist.
-mkdir -p ${BUNDLE_DIR}
 
-pushd ${BUNDLE_DIR} 1>/dev/null 2>&1
 function pull_update {
     local plugin_dir=$(basename ${1%'.git'})
     if [ -d ${plugin_dir}/.git ]; then
@@ -63,6 +60,10 @@ function pull_update {
         git clone ${GITHUB_BASEURL}/${1}
     fi
 }
+
+# make sure ~/.vim/bundle exist.
+mkdir -p ${BUNDLE_DIR}
+pushd ${BUNDLE_DIR} 1>/dev/null 2>&1
 
 grep '^\s*Plugin ' ~/.vimrc.plugins | awk -F"'" '{print $2}' | while read vim_plugin
 do
