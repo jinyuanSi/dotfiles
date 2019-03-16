@@ -32,7 +32,6 @@ if WINDOWS()
 elseif OSX()
     silent exec 'language en_US'
     set termencoding=utf-8
-
 else
     silent exec 'language en_US.UTF-8'
     set termencoding=utf-8
@@ -140,9 +139,9 @@ if has('autocmd')
                     \ if line("'\"") > 0 && line("'\"") <= line("$") |
                     \   exe "normal g`\"" |
                     \ endif
-        autocmd FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
-        autocmd FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
-        autocmd FileType javascript,html,htmldjango,xhtml,haml,css,yaml,yml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+        autocmd FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 80 characters.
+        autocmd FileType c,cpp,java,javascript,go set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
+        autocmd FileType javascript,html,htmldjango,xhtml,haml,css,vue,js setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
         autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
 endif
