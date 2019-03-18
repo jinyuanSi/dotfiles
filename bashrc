@@ -39,9 +39,9 @@ if [ -f ~/.git-prompt.sh ]; then
 fi
 
 if command -v __git_ps1 &>/dev/null; then
-    PS1='[\[\e[36;2m\]\u \[\e[31;1m\]\W\[\e[32;1m\]$(__git_ps1 "(%s)")\[\e[0m\]]\[\e[33;1m\]\$\[\e[0m\] '
+    PS1='[\[\e[36;2m\]\u@\h \[\e[31;1m\]\W\[\e[32;1m\]$(__git_ps1 "(%s)")\[\e[0m\]]\[\e[33;1m\]\$\[\e[0m\] '
 else
-    PS1='[\[\e[36;2m\]\u \[\e[31;1m\]\W\[\e[0m\]]\[\e[33;1m\]\$\[\e[0m\] '
+    PS1='[\[\e[36;2m\]\u@\h \[\e[31;1m\]\W\[\e[0m\]]\[\e[33;1m\]\$\[\e[0m\] '
 fi
 
 if [ "${OS_TYPE}" = "darwin" ]; then
