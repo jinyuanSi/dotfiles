@@ -121,6 +121,9 @@ set nowrapscan
 set grepprg=lid\ -Rgrep\ -s
 set grepformat=%f:%l:%m
 
+" https://vimhelp.org/term.txt.html#xterm-bracketed-paste
+set t_BE=
+
 if has('clipboard')
     if has('unnamedplus') " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
@@ -195,3 +198,4 @@ nnoremap <F10> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --l
 " enhance '<' '>' , do not need to reselect the block after shift it.
 vnoremap < <gv
 vnoremap > >gv
+
