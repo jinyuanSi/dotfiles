@@ -12,6 +12,11 @@ if ! command -v ctags &>/dev/null ; then
     echo "Pleass install ctags package, the vim plugin needs ctags package."
 fi
 
+if ! command -v gtags &>/dev/null ; then
+    NEED_INSTALL="${NEED_INSTALL}global "
+    echo "Pleass install gtags package, the vim plugin needs gtags package."
+fi
+
 if ! command -v git &>/dev/null ; then
     NEED_INSTALL="${NEED_INSTALL}git "
     echo "Pleass install git package, the vim plugin needs git command to update Plugins from internat."
