@@ -37,6 +37,13 @@ else
     set termencoding=utf-8
 endif
 
+if executable('gtags-cscope')
+    set csprg=gtags-cscope
+    "let $GTAGSLABEL = 'native-pygments'
+    let $GTAGSLABEL = 'native'
+    let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+endif
+
 " vundle#begin
 filetype off " required
 
@@ -95,7 +102,7 @@ set titlestring=%F\ (%{expand(\"%:p:.:h\")}/)
 set showfulltag " show tag with function protype.
 set statusline=%F\ %y%r%m\ %{&ff}%=[Hex:0x%B][Dec:%b]\ %4l/%L\ %02p%%
 "set cc=81
-set diffopt+=vertical
+"set diffopt+=vertical
 set cursorline
 set cursorcolumn
 set autoindent " autoindent
@@ -198,4 +205,3 @@ nnoremap <F10> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --l
 " enhance '<' '>' , do not need to reselect the block after shift it.
 vnoremap < <gv
 vnoremap > >gv
-
