@@ -77,3 +77,5 @@ done
 popd 1>/dev/null 2>&1
 
 wait
+
+echo "need to copy gtags.conf to /usr/local/share/gtags/gtags.conf"

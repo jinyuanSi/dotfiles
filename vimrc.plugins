@@ -6,6 +6,7 @@ Plugin 'VundleVim/Vundle.Vim'
 " ---------------------------------------------------
 Plugin 'ludovicchabant/vim-gutentags'
 
+"let g:gutentags_trace = 1 " debug gtags if it does not work
 let g:gutentags_define_advanced_commands = 1
 
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
